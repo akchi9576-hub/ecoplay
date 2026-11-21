@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>校園生態守護者</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f3faf2;--card:#fff;--tx:#1d2a20;--mu:#5f7566;--bd:#cfe5d2;--ac:#2f8f4e;--ac2:#dff3e4;--up:#1f8a4c;--dn:#c62f2f;--on:#fff;color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#131c16;--card:#1d2a21;--tx:#e8f3ea;--mu:#9fb7a5;--bd:#34493a;--ac:#6fd68d;--ac2:#213b2a;--up:#55d08a;--dn:#ff7b7b;--on:#0f2616;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#131c16;--card:#1d2a21;--tx:#e8f3ea;--mu:#9fb7a5;--bd:#34493a;--ac:#6fd68d;--ac2:#213b2a;--up:#55d08a;--dn:#ff7b7b;--on:#0f2616;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--tx);font:16px/1.7 -apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;background:radial-gradient(circle at 15% 0,var(--ac2),transparent 45%),radial-gradient(circle at 90% 10%,var(--ac2),transparent 40%),var(--bg)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+main{max-width:720px;margin:0 auto;padding:16px 16px 48px}
+h1{font-size:1.8rem;letter-spacing:.06em;margin:10px 0 2px;text-align:center;color:var(--ac)}
+.sub{display:block;font-size:.8rem;font-weight:400;letter-spacing:.18em;color:var(--mu)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:20px;margin:12px 0;box-shadow:0 6px 24px rgba(30,90,50,.14);animation:in .35s ease both}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.stats{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:12px 14px}
+.st{text-align:center;font-size:.85rem;font-weight:600;color:var(--mu)}
+.st b{display:block;font-size:1.4rem;color:var(--tx)}
+.bar{height:10px;border-radius:5px;background:var(--bd);overflow:hidden;margin-top:4px}
+.bar i{display:block;height:100%;border-radius:5px;transition:width .4s}
+.st:nth-child(1) i{background:linear-gradient(90deg,#f6b73c,#ee8f1a)}
+.st:nth-child(2) i{background:linear-gradient(90deg,#f58bb0,#e8508a)}
+.st:nth-child(3) i{background:linear-gradient(90deg,#5fd39a,#2fa66a)}
+.prog{height:6px;border-radius:3px;background:var(--bd);margin:0 0 12px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--ac);transition:width .4s}
+.rd{display:inline-block;background:var(--ac);color:var(--on);padding:4px 14px;border-radius:999px;font-size:.9rem;margin-bottom:6px}
+.tag{font-size:.8rem;color:var(--mu);margin-left:6px}
+.facts{background:var(--ac2);border:1px dashed var(--ac);border-radius:14px;padding:12px 16px;font-size:.92rem;margin:10px 0}
+.facts b{display:block;color:var(--ac);margin-bottom:4px}
+button{font:inherit;color:var(--tx);background:var(--card);border:2px solid var(--bd);border-radius:16px;padding:14px 16px;margin:6px 0;width:100%;text-align:left;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s}
+button:hover{border-color:var(--ac);transform:translateY(-2px);box-shadow:0 6px 14px rgba(30,90,50,.18)}
+button:active{transform:scale(.98)}
+button.go{background:var(--ac);color:var(--on);border-color:var(--ac);text-align:center;font-weight:700;letter-spacing:.08em;box-shadow:0 4px 0 rgba(0,0,0,.18)}
+button.sec{text-align:center;font-size:.92rem}
+button[data-j] b:first-child{display:inline-block;width:1.9em;height:1.9em;line-height:1.9em;text-align:center;border-radius:50%;background:var(--ac2);color:var(--ac);margin-right:8px}
+.lv small{display:block;color:var(--mu);font-size:.85rem}
+.d{display:flex;gap:12px;flex-wrap:wrap;font-weight:700;margin:10px 0;background:var(--ac2);border-radius:12px;padding:10px 14px;font-size:.92rem}
+.up{color:var(--up)}.dn{color:var(--dn)}
+.know{border-left:4px solid var(--ac);background:var(--ac2);border-radius:0 12px 12px 0;padding:10px 14px;font-size:.93rem}
+.big{font-size:2.4rem;text-align:center;font-weight:800;color:var(--ac);margin:6px 0}
+.ctr{text-align:center}
+.rev{display:flex;gap:8px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--bd);font-size:.9rem}
+.rev:last-child{border:0}
+.rev span:first-child{flex:none}
+.rev small{display:block;color:var(--mu)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.top{display:flex;justify-content:flex-end}
+.top button{width:auto;padding:4px 12px;font-size:.8rem;margin:0;border-width:1px}
+@media (max-width:480px){.st{font-size:.76rem}.st b{font-size:1.2rem}h1{font-size:1.5rem}.card{padding:16px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<h1>🌿 校園生態守護者<span class="sub">CAMPUS ECO GUARDIAN</span></h1>
+<div class="card stats" id="stats"></div>
+<div id="view"></div>
+</main>
+<script>
+const RE=[
+{t:"養不下的紅耳龜",s:"社員說他養的紅耳龜越長越大，想趁週末偷偷放進校園生態池。",f:["紅耳龜（巴西龜）是外來入侵種，會與本土龜類競爭、傳播疾病。"],o:[["放進生態池，反正池塘很大",[0,0,-22],"外來龜類會搶食物與曬背空間，也可能傳播疾病，是常見的放生災難。"],["聯絡動保單位或認養管道，並宣導「不棄養、不放生」",[-2,4,10],"讓動物得到合適安置，也教育同學負責任飼養。"],["悄悄丟到校外的溪邊",[0,0,-18],"只是把問題轉移到更脆弱的野外溪流。"]],k:"外來寵物不可隨意放生；養之前要想清楚，無法飼養請找合法管道安置。"},
+{t:"淨灘遇見寄居蟹",s:"淨灘時發現漂亮的貝殼，裡面還有活的寄居蟹，同學想帶回宿舍當擺設。",f:["海灘上的貝殼與生物是生態系的一部分，活體不應帶走。"],o:[["帶幾個回去，數量不多沒關係",[0,2,-12],"每人帶走一點，累積起來影響很大，寄居蟹也活不久。"],["原地欣賞拍照，把活體放回原處，只撿垃圾",[0,5,10],"不干擾生物，也讓大家學到「只帶走垃圾」。"],["把貝殼賣給同學當作活動募款",[5,0,-15],"鼓勵採集反而造成更多干擾與破壞。"]],k:"淨灘只帶走垃圾；活體與自然物應留在原地。"},
+{t:"想餵獼猴的同學",s:"山邊校園的獼猴靠近午餐區，同學覺得牠們可愛，想分麵包給牠們。",f:["餵食會讓野生動物習慣向人要食物，增加衝突與疾病風險。"],o:[["只餵一點點，大家開心就好",[0,2,-15],"餵食會改變牠們的覓食行為，人與猴衝突也更常發生。"],["把食物收好、垃圾桶加蓋，並在現場放置提醒告示",[-2,3,10],"減少誘因，保護人也保護動物，是最有效的做法。"],["用大聲或石頭趕走牠們",[0,-3,-12],"驚嚇與傷害野生動物，也容易引發攻擊。"]],k:"不餵食、不靠近野生動物，並管好食物與垃圾。"},
+{t:"登山步道的香蕉皮",s:"登山途中，有同學把香蕉皮隨手丟在步道旁，說「它會自己分解」。",f:["果皮在山上分解慢，也會吸引動物並改變牠們的行為。"],o:[["沒關係，天然的東西不算垃圾",[0,0,-10],"果皮分解可能要很久，還會吸引野生動物靠近人類。"],["所有垃圾包含果皮都自己帶下山",[0,3,10],"落實「不留痕跡」，是最簡單的步道保育。"],["丟進路邊的樹叢，藏起來就看不到",[0,0,-8],"只是看不見，影響依然存在。"]],k:"「無痕山林」：垃圾（含果皮）一律自己帶走。"},
+{t:"夜間賞螢拍照",s:"社團辦夜間賞螢，有人想開手電筒與閃光燈拍個清楚的照片。",f:["螢火蟲靠閃光求偶，強光與噪音會干擾牠們。"],o:[["開閃光燈，拍到就是榮耀",[0,3,-15],"強光干擾求偶，也可能傷害螢火蟲。"],["關閉燈光、使用紅光或手機夜景模式，並保持安靜",[-1,3,10],"降低干擾，也讓大家真正欣賞到螢火蟲。"],["抓幾隻放進瓶子裡讓大家看清楚",[0,5,-20],"採集會直接傷害族群，千萬不要。"]],k:"賞螢要減光、安靜、不採集，也不要踩踏棲地。"},
+{t:"社團活動的免洗餐具",s:"社團聚餐要 50 人，有人說用免洗餐具最方便，洗碗太麻煩。",f:["一次性餐具使用時間短，卻會產生大量垃圾。"],o:[["全部用免洗餐具，省事就好",[3,0,-10],"方便但垃圾暴增，也不符合生態社團的精神。"],["請大家自備餐具，並備少量可清洗的借用餐具",[-3,5,10],"減少垃圾，也能建立大家的環保習慣。"],["改買一次性「可分解」餐具，覺得很環保",[-6,2,-3],"許多需要特定設備才能分解，仍會變成垃圾。"]],k:"減量與重複使用優先；「可分解」不等於隨便丟。"},
+{t:"迎新活動的放飛氣球",s:"迎新活動想放 200 顆氣球，說這樣拍起來超壯觀，氣球會慢慢飄走。",f:["飄走的氣球會變成垃圾，海鳥與海龜可能誤食或被纏住。"],o:[["放飛氣球，這是一生一次的畫面",[2,3,-18],"氣球最後會落在山林或海裡，變成野生動物的危險垃圾。"],["改用布條、彩旗或肥皂泡，拍起來一樣有氣氛",[-2,5,10],"零垃圾也能有儀式感，還能重複使用。"],["放飛但選「可分解」的乳膠氣球",[-1,2,-8],"乳膠氣球分解仍需時間，期間仍會傷害動物。"]],k:"氣球放飛等於亂丟垃圾；用可重複使用的布置取代。"},
+{t:"路邊的小幼鳥",s:"草叢裡有一隻羽毛未豐的小鳥，旁邊沒有鳥巢，同學想帶回宿舍養。",f:["許多幼鳥離巢後在地面學飛，親鳥其實就在附近照顧。","除非受傷或身處危險，通常不需要帶走。"],o:[["撿回宿舍用麵包水餵養",[0,3,-18],"不當餵食會傷害幼鳥，也可能造成幼鳥與親鳥分離。"],["先在遠處觀察；若在馬路等危險處，才移到附近樹叢，受傷則聯絡野生動物救傷單位",[-1,4,12],"尊重牠的自然成長，必要時才尋求專業協助。"],["把牠放到樹上高處就好",[0,1,-5],"可能弄傷幼鳥，也無法確定親鳥是否找得到。"]],k:"看到幼鳥先觀察，非必要不帶走；受傷時聯絡專業救傷單位。"},
+{t:"沾滿油汙的餐盒",s:"活動結束後，大家把沾著油和飯粒的餐盒全丟進資源回收桶，說反正是回收。",f:["髒污的紙餐盒或塑膠盒會污染整批回收物，可能讓整批無法回收。"],o:[["全部丟回收桶，心意比較重要",[0,0,-10],"髒污回收物會拉低回收品質，反而增加處理負擔。"],["清掉食物殘渣並簡單擦洗，無法清乾淨的丟一般垃圾",[0,3,8],"確保回收物乾淨，才是真正有效的回收。"],["全部丟一般垃圾，省得分類麻煩",[1,-2,-6],"可回收物被浪費，垃圾量增加。"]],k:"資源回收要乾淨；髒污無法回收的丟一般垃圾，並從源頭減量。"},
+{t:"想帶回家的野花",s:"步道旁有一叢漂亮的野花，同學說要摘一把或挖一株回去種。",f:["野外的花草是昆蟲與動物的食物與棲地，也有些是稀有植物。"],o:[["摘一小把就好，花還很多",[0,1,-10],"每個人都摘一點，花很快就消失，也影響結果實與繁殖。"],["用拍照與紀錄代替採集，並記錄在公民科學平台",[0,4,10],"帶走回憶而不是花，也能累積生態資料。"],["連根挖一株回去自己種",[0,0,-14],"野生植物離開棲地多半很難存活，也可能違反規定。"]],k:"賞花不摘花；用拍照與紀錄代替採集。"}
+];
+const RN=[
+{t:"小花蔓澤蘭攻占林緣",s:"校園林緣被小花蔓澤蘭爬滿，樹冠快被蓋住，行政單位說用除草劑噴一噴最快。",f:["小花蔓澤蘭生長快，會遮蔽陽光使樹木枯死，俗稱「綠癌」。","清除時要連根拔起並妥善處理，避免殘枝再生或種子擴散。"],o:[["全區噴除草劑，一勞永逸",[-3,-3,-10],"除草劑會傷害其他植物與土壤生物，也可能污染水源。"],["組織志工在開花前連根拔除、集中清運，並定期回訪",[-4,5,12],"費力但精準，也能讓同學一起學習外來種管理。"],["先不管，等學校編預算",[0,-5,-12],"拖越久蔓延越廣，後面處理成本更高。"]],k:"入侵植物要及早人工清除、徹底處理並持續追蹤，避免廣泛使用除草劑。"},
+{t:"鳥巢與修剪行程",s:"總務處排定四月修剪校園榕樹，但你發現枝上有築巢的鳥類與幼鳥。",f:["春夏是多數鳥類的繁殖期，修剪樹木最好避開。"],o:[["照原計畫修剪，不要延誤",[1,-3,-15],"可能破壞鳥巢與雛鳥，也可能違反保育規範。"],["與總務處協調延後修剪，先修剪沒有鳥巢的部分，並在現場公告",[-2,4,10],"溝通耗時，但保護了繁殖中的鳥類。"],["自己偷偷把鳥巢移到別的樹",[0,-2,-8],"人為干擾會讓親鳥棄巢，雛鳥仍可能死亡。"]],k:"樹木修剪應避開繁殖季，並先調查是否有鳥巢。"},
+{t:"圖書館玻璃的鳥擊事件",s:"圖書館一整面玻璃，一個月內已有好幾隻鳥撞上受傷。",f:["鳥看不見透明玻璃，只會看見反射的天空與樹。","密集、規律的圖案貼在玻璃外側，才能有效提示。"],o:[["貼一隻大猛禽剪影，數量越少越乾淨",[-1,0,-4],"單隻剪影效果有限，鳥仍可能撞上其他區域。"],["在玻璃外側貼規律的點狀或線條貼紙，並收集統計撞擊情形",[-5,3,12],"能有效降低撞擊，統計資料也能支持後續改善。"],["在室內拉上窗簾",[-2,-2,0],"只改善室內，反射仍在，對鳥類保護幫助不大。"]],k:"防鳥擊要在玻璃外側貼規律圖案，並留下紀錄。"},
+{t:"烤肉後的油水",s:"活動結束後，大家想把烤肉網與油膩的清洗水直接倒進旁邊的雨水溝。",f:["雨水溝通常直接流入溪流或排水系統，不會經過污水處理。"],o:[["倒進去，水會沖走的",[0,0,-18],"油汙與清潔劑會污染水體，影響水生生物。"],["用紙擦去油汙，再把汙水帶回有污水處理的地方清洗",[-2,3,10],"多花一些力氣，但避免污染溪流。"],["把油汙倒在樹下，讓土壤吸收",[0,0,-10],"油汙會污染土壤與地下水，也影響植物。"]],k:"雨水溝不是污水處理系統；油汙要妥善處理。"},
+{t:"池塘裡的福壽螺卵塊",s:"生態池邊的石頭上出現一團團粉紅色的卵塊，疑似福壽螺。",f:["福壽螺是外來種，卵塊鮮紅或粉紅，常產在水面以上的物體上。"],o:[["拍照後丟進水裡，讓牠們自己處理",[0,-2,-15],"卵塊落水反而更容易孵化擴散。"],["戴手套刮除卵塊，集中帶離並處理，並定期巡視",[-2,5,10],"在孵化前移除，能有效減少族群。"],["不處理，因為牠們看起來不危險",[0,-3,-10],"放任外來種擴散，會破壞水生植物與生態平衡。"]],k:"福壽螺卵塊要在孵化前移出水面環境並集中處理。"},
+{t:"夜間的路殺事件",s:"校外道路晚上常有蛙類與蛇類被車輾過，同學想幫忙改善。",f:["路殺是野生動物的重要死因之一；公民科學的回報可協助找出熱點。"],o:[["自己晚上跑去路邊撿，不用管安全",[0,2,-5],"危險又缺乏系統，無法長期改善。"],["用公民科學平台記錄路殺，彙整後與主管機關討論警示標誌與減速",[-2,5,10],"資料能找出熱點，提出有根據的改善建議。"],["貼一張「請減速」的海報就好",[-1,2,3],"有幫助但效果有限，缺乏資料支撐。"]],k:"路殺資料化後，才能促成警示牌、減速或生態廊道。"},
+{t:"校園裡的流浪貓",s:"校園裡的流浪貓越來越多，有人天天大量餵食，也有人說貓會捕食鳥類與蜥蜴。",f:["遊蕩貓會捕食小型野生動物，也要顧及動物福利。","專業團體可協助評估絕育、認養，並避免棄養。"],o:[["任由大家餵，貓咪最重要",[-2,2,-10],"數量失控，會威脅野生動物，貓咪自己也容易生病受傷。"],["與動保團體合作，推動絕育、認養與固定餵食點，並宣導不棄養",[-4,4,10],"兼顧動物福利與生態，需要時間與經費，但最能長期解決。"],["要求學校把貓全部驅趕出去",[0,-5,-6],"可能傷害動物，也容易與愛貓人士對立。"]],k:"管理遊蕩貓要兼顧動物福利與野生動物，並從源頭減少棄養。"},
+{t:"生態池裡的琵琶鼠魚",s:"生態池裡發現一群琵琶鼠魚（俗稱垃圾魚），池邊的本土水生植物被啃光了。",f:["琵琶鼠魚是外來魚種，會破壞池岸並與本土魚類競爭。"],o:[["先不管，說不定自己會消失",[0,-3,-12],"外來魚會繁殖並擴散，問題只會更嚴重。"],["與專家討論後，用網具或圍堵移除，並避免倒進溪流或再放生",[-4,5,12],"需要人力與專業指導，但能有效控制族群。"],["直接投放藥劑，一次殺光",[-2,-2,-14],"藥劑會殺死所有水生生物，也可能污染下游水體。"]],k:"外來魚要由專業指導移除，絕不能再放進其他水域。"},
+{t:"後山步道的路燈光害",s:"後山路燈太亮又是冷白光，夜間螢火蟲與蛙類活動明顯變少，但有同學擔心步道安全。",f:["強光與冷色光會干擾夜行性動物。","可用遮罩、暖色光、感應或調光，兼顧安全與生態。"],o:[["全部關掉，夜間活動自己想辦法",[0,-6,-4],"安全顧慮沒解決，也容易引發反彈。"],["提出遮罩、暖色光與感應調光方案，並先做安全評估",[-4,4,10],"需要預算與溝通，但能兼顧安全與生態。"],["維持原樣，因為習慣了",[0,0,-10],"持續光害，夜行性動物仍受影響。"]],k:"減光害要兼顧安全，用遮罩、暖色光、調光等方式降低影響。"},
+{t:"秋天的落葉",s:"秋天落葉很多，工友打算全部集中燒掉，說這樣最省事。",f:["露天燃燒落葉會造成空氣污染，也可能違反規定。","落葉可堆肥，也能保留一部分作為昆蟲與小動物的棲地。"],o:[["全部集中燒掉，快又乾淨",[2,-2,-15],"空氣污染，也失去可再利用的有機資源。"],["規劃堆肥區做成花圃肥料，並保留一角自然堆放給昆蟲",[-2,4,12],"需要場地與推廣，但能減廢也提供棲地。"],["全部裝袋當垃圾丟掉",[-3,0,-5],"增加垃圾量，浪費了有機資源。"]],k:"落葉是資源，可堆肥或部分保留，避免露天燃燒。"}
+];
+const RH=[
+{t:"草地 vs 屋頂光電",s:"校方想在校園空草地設置太陽能光電板來減碳，但那裡有蝴蝶與地棲鳥類活動。",f:["再生能源很重要，但選址仍要評估對棲地的影響。","屋頂、停車場、已開發地是優先考慮的位置。"],o:[["支持，減碳比較重要，草地沒什麼價值",[6,-4,-12],"草地棲地被破壞，等於用一種環境問題換另一種。"],["提出替代案：屋頂與停車棚光電，並保留草地做棲地",[-5,4,10],"需要說服校方並多花預算，但能兼顧減碳與生態。"],["反對所有光電，因為不想破壞環境",[0,-4,-3],"忽略減碳需求，也可能與支持者對立。"]],k:"再生能源要選對地點，優先使用屋頂與已開發地。"},
+{t:"整齊 vs 蜜源花叢",s:"學校要求校園割草保持整潔，但一片野花正開，吸引大量蜜蜂與蝴蝶。",f:["傳粉昆蟲需要連續的蜜源與棲地，分區輪割能保留避難所。"],o:[["全面割光，與行政單位保持良好關係",[3,-2,-10],"短期輕鬆，但傳粉昆蟲失去食物與棲地。"],["提出分區輪割計畫，保留花區並設置解說牌",[-3,5,10],"需要溝通與標示，但校園仍整潔，也有生態教育價值。"],["連夜到現場阻止割草",[-1,-6,2],"衝突升高，也失去未來合作的機會。"]],k:"分區輪割可兼顧整潔與生物多樣性。"},
+{t:"廠商贊助與漂綠疑慮",s:"一家被指控排放污染的企業想贊助你們 30 萬，條件是活動上大量露出「環保夥伴」。",f:["「漂綠」是指企業用環保形象包裝，但實際行動不一致。","贊助前要查證企業的環境紀錄與合作條件。"],o:[["收下贊助，錢有用就好",[15,-4,-8],"經費到手，但活動可能被批評替企業洗白。"],["婉拒或要求調整，讓企業改善作為並公開，且保持社團獨立",[-3,4,8],"可能損失資金，但維持公信力與立場。"],["收下贊助，但不告知社員",[15,-8,-12],"違背透明原則，一旦曝光信任崩盤。"]],k:"贊助要查證與保持獨立，並在透明的前提下合作。"},
+{t:"公開稀有蘭花的位置",s:"同學在校園後山發現一株稀有野生蘭花，想在公民科學平台上公開精確座標。",f:["公民科學能累積資料，但稀有物種的精確位置可能引來盜採。"],o:[["公開精確座標，讓更多人來觀察",[0,3,-15],"可能吸引盜採與踩踏，傷害唯一族群。"],["上傳紀錄但把座標模糊化，並通報專家與管理單位",[-1,3,10],"保留科學資料，又降低被盜採的風險。"],["完全不記錄，保持祕密",[0,-2,-2],"安全但少了科學紀錄，無法納入保育計畫。"]],k:"稀有物種資料要適度保護位置，並交由專業單位處理。"},
+{t:"登革熱警訊與噴藥",s:"校園附近出現登革熱病例，有人要求立刻大範圍噴藥，也有人擔心傷害蜻蜓等益蟲。",f:["減少孳生源（積水容器）是防治登革熱的根本。","化學防治應依公衛單位評估，針對性使用。"],o:[["要求學校全區大量噴藥，越快越好",[-3,3,-12],"傷害非目標昆蟲，也無法取代清除孳生源。"],["動員志工巡查清除積水容器，並配合公衛單位的評估與防治",[-4,5,10],"耗費人力，但從根源降低病媒蚊。"],["什麼都不做，等官方處理",[0,-4,-3],"錯過黃金時間，社區風險升高。"]],k:"防治病媒蚊要先清除孳生源，並配合公衛單位針對性處理。"},
+{t:"生態市集的承載量",s:"社團想辦生態市集募款，預計 500 人，場地選在有草地與小池塘的區域。",f:["人數過多會造成踩踏、噪音與垃圾，影響棲地。","活動可選在既有硬鋪面，並設置人流與垃圾管制。"],o:[["選在草地池塘邊，景色好、人氣旺",[10,6,-14],"募款可能不錯，但棲地受到踩踏與干擾。"],["選在廣場硬鋪面，限制人數並規劃垃圾與環保餐具措施",[2,3,8],"規模稍受限，但降低影響，也符合活動理念。"],["取消活動，因為任何活動都有影響",[-5,-8,3],"避開風險，但失去募款與環境教育機會。"]],k:"活動要評估承載量，選對地點並做好減量措施。"},
+{t:"外來八哥的處理爭議",s:"校園裡外來的白尾八哥越來越多，擠壓了本土鳥類巢位。有社員主張「所有生命平等」，反對任何移除。",f:["外來種管理要看科學資料，並兼顧動物福利。","處理方式應由專家與主管機關參與，不能自己使用毒餌。"],o:[["尊重所有生命，什麼都不做",[0,2,-8],"本土鳥類持續被排擠，生態失衡擴大。"],["邀請專家辦說明會，蒐集數量資料，依主管機關規定與專業建議處理",[-4,5,10],"有溝通也有證據，能降低爭議並減少對動物的傷害。"],["自己在校園投放毒餌",[-1,-8,-20],"毒餌會危害其他動物與人，也是極端危險的做法。"]],k:"外來種管理要有科學依據、專家參與與動物福利，並與社群充分溝通。"},
+{t:"企業的碳補償植樹",s:"企業提議在校園空地大量種植單一的外來速生樹，作為碳補償並露出企業標誌。",f:["單一樹種的林地，對鳥類與昆蟲的棲地價值較低。","原生、多樣的樹種比較能支持在地生態。"],o:[["接受，提案很快就能拿到經費",[10,-3,-12],"拿到經費，但棲地多樣性不足，也可能成為漂綠宣傳。"],["提出改種多種原生樹，並簽訂長期維護與監測條件",[-3,4,10],"談判需要時間，但生態效益與公信力都更好。"],["完全拒絕，企業合作都不可靠",[0,-4,0],"可能錯過改善機會，也減少與企業對話的空間。"]],k:"植樹要選對樹種、多樣化並長期維護，而不是只追求數量或宣傳。"},
+{t:"濕地開發與在地就業",s:"社區想把校旁一塊濕地填平蓋商場，說能創造工作，也有同學會想在那裡打工。",f:["濕地能調節洪水、淨化水質並提供候鳥棲地。","生態資料與居民溝通，能找出兼顧生計與保育的方案。"],o:[["發起強烈抗議，不跟任何人溝通",[-3,-6,2],"對立升高，反而難以影響決策。"],["蒐集生態與滯洪資料，與居民對話，並提出低衝擊或生態旅遊替代方案",[-5,6,10],"需要時間與專業，但能把保育與生計結合。"],["保持沉默，避免衝突",[0,-3,-10],"錯失發聲機會，濕地可能被填平。"]],k:"保育要用資料與溝通尋求共好，而不是只有對抗或沉默。"},
+{t:"研究採集 vs 保育社",s:"一位研究生想在校園採集昆蟲做研究，社團有人說「任何採集都不行」。",f:["科學研究可提供保育所需資料，但採集要有規範。","可協商採樣數量、地點、時間，並共享研究資料。"],o:[["全面禁止，不給任何採集",[0,-3,2],"可能失去資料，也與研究者關係惡化。"],["與研究者協商採樣規範，包括數量、地點與時間，並要求共享資料",[-2,5,8],"兼顧保育與研究，資料也能協助校園保育。"],["不設限，研究者想採多少都可以",[0,0,-12],"過度採集可能傷害族群，也缺乏管理。"]],k:"研究與保育可合作：訂定採樣規範、控制量並共享資料。"}
+];
+const LV=[["🌱 新手志工（簡單）","啟動經費 150・10 題入門生態觀念，答案較明確",150],["🌿 資深社員（普通）","啟動經費 100・10 題校園保育實務",100],["🔥 社長挑戰（困難）","啟動經費 70・10 題兩難抉擇，各有取捨",70]];
+const $=id=>document.getElementById(id);
+const cl=v=>Math.max(0,Math.min(100,v));
+const fmt=n=>`<span class="${n>=0?"up":"dn"}">${n>=0?"+":""}${n}</span>`;
+let S,i,hist,ord,lv,best=0,R=RN;
+try{best=+localStorage.getItem("eco_best")||0}catch(e){}
+function stats(){
+ const a=[["💰 經費",S.m],["🙋 參與度",S.c],["🌳 生態",S.f]];
+ $("stats").innerHTML=a.map(x=>`<div class="st">${x[0]}<b>${x[1]}</b><div class="bar"><i style="width:${Math.min(100,x[1])}%"></i></div></div>`).join("");
+}
+function theme(){const r=document.documentElement,d=getComputedStyle(r).colorScheme==="dark";r.dataset.theme=d?"light":"dark"}
+function start(){S={m:100,c:100,f:100};i=0;hist=[];stats();
+ $("view").innerHTML=`<div class="top"><button class="sec" id="th">🌓 切換深淺色</button></div><div class="card"><p>你是大學<b>生態保育社</b>的新任社長，負責照顧校園旁的綠地與生態池。每個難度都有<b>不同的專屬題目</b>，你要在保育、經費、人力與溝通之間做出選擇。</p><p>經費或生態健康歸零，計畫就會失敗；參與度歸零，志工不再參與。每回合還會依參與度獲得募款與贊助。</p>${best?`<p class="know">🏆 你的最高分：<b>${best}</b></p>`:""}<p><b>選擇難度：</b></p>${LV.map((l,k)=>`<button class="lv" data-l="${k}"><b>${l[0]}</b><small>${l[1]}</small></button>`).join("")}</div>`;
+ $("th").onclick=theme;
+ document.querySelectorAll("[data-l]").forEach(b=>b.onclick=()=>{lv=+b.dataset.l;R=[RE,RN,RH][lv];S.m=LV[lv][2];stats();round()});
+}
+function round(){
+ const r=R[i];ord=[0,1,2].sort(()=>Math.random()-.5);
+ $("view").innerHTML=`<div class="card"><div class="prog"><i style="width:${i*100/R.length}%"></i></div><div class="rd">第 ${i+1} / ${R.length} 回合</div><b>${r.t}</b><p>${r.s}</p><div class="facts"><b>📚 生態小知識</b>${r.f.map(x=>`<div>・${x}</div>`).join("")}</div>${ord.map((k,j)=>`<button data-j="${j}"><b>${"ABC"[j]}.</b> ${r.o[k][0]}</button>`).join("")}<div class="tag">💡 可按鍵盤 1／2／3 選擇</div></div>`;
+ document.querySelectorAll("button[data-j]").forEach(b=>b.onclick=()=>pick(+b.dataset.j));
+}
+function qual(r,k){const v=o=>o[1][0]*.5+o[1][1]+o[1][2]*1.5,a=r.o.map(v),m=Math.max(...a);return a[k]===m?2:a[k]>=m-15?1:0}
+function pick(j){
+ const r=R[i],k=ord[j],o=r.o[k],d=o[1],oc=Math.round(S.c/10),p={...S};
+ S.m+=d[0]+oc;S.c=cl(S.c+d[1]);S.f=cl(S.f+d[2]);
+ const q=qual(r,k);hist.push({t:r.t,q,k:r.k});stats();
+ const ml=S.m<=0?"💰 經費耗盡，計畫無法再進行，被迫終止。":S.f<=0?"🌳 生態健康歸零，棲地崩壞、物種消失，計畫宣告失敗。":S.c<=0?"😞 參與度歸零，志工不再參與，社團難以為繼。":"";
+ const L=["⚠️ 風險較高的決策","👌 可接受的決策","👍 最佳決策"][q];
+ $("view").innerHTML=`<div class="card"><div class="prog"><i style="width:${(i+1)*100/R.length}%"></i></div><div class="rd">${L}</div><p><b>你選了：</b>${o[0]}</p><p>${o[2]}</p><div class="know">💡 ${r.k}</div><div class="d"><span>💰 經費 ${fmt(S.m-p.m)}（含募款 +${oc}）</span><span>🙋 參與度 ${fmt(S.c-p.c)}</span><span>🌳 生態 ${fmt(S.f-p.f)}</span></div><button class="go" id="nx">${ml?"查看結局":i<R.length-1?"下一回合":"查看最終評價"}</button></div>`;
+ $("nx").onclick=()=>{i++;if(ml)end(ml);else if(i>=R.length)end("");else round()};
+}
+function end(fail){
+ let h,sc=0,txt;
+ if(fail){h=`<div class="big">保育失敗</div><p class="ctr">${fail}（撐到第 ${i} 回合）</p>`;txt=`我在「校園生態守護者」撐到第 ${i} 回合就失敗了，你來挑戰看看！`}
+ else{
+  sc=Math.round(Math.min(100,S.m*.4)+S.c*.3+S.f*.3);
+  const g=sc>=85?"S 生態守護英雄":sc>=70?"A 優秀保育社長":sc>=55?"B 穩健的環境志工":sc>=40?"C 勉強維持":"D 棲地岌岌可危";
+  if(sc>best){best=sc;try{localStorage.setItem("eco_best",sc)}catch(e){}}
+  h=`<div class="big">${g}</div><p class="ctr">綜合得分 <b>${sc}</b>｜經費 ${S.m}・參與度 ${S.c}・生態 ${S.f}<br>🏆 最高分 ${best}　難度：${LV[lv][0]}</p>`;
+  txt=`我在「校園生態守護者」拿到 ${g}（${sc} 分），你能超越我嗎？`;
+ }
+ const icon=["⚠️","👌","👍"];
+ $("view").innerHTML=`<div class="card">${h}<div class="facts"><b>📝 決策回顧</b>${hist.map((x,n)=>`<div class="rev"><span>${icon[x.q]}</span><span>第 ${n+1} 回合：${x.t}<small>${x.k}</small></span></div>`).join("")}</div><div class="facts"><b>🎓 3 項最重要的生態觀念</b><div>1. 外來種不放生、不棄養，入侵種要及早清除並持續追蹤。</div><div>2. 減少干擾：不餵食、不採集、不留痕跡，並尊重繁殖季與棲地。</div><div>3. 用資料與合作做保育：公民科學、跨單位溝通，並保持透明與獨立。</div></div><div class="know">📖 想深入了解？可查詢《野生動物保育法》，並參與公民科學平台（如台灣生物多樣性網絡 TBN、iNaturalist）或校內外的生態志工活動。</div><div class="grid2"><button class="go" id="rs">再玩一次</button><button class="sec" id="sh">📋 複製成績分享</button></div><div class="tag ctr" id="msg"></div></div>`;
+ $("rs").onclick=start;
+ $("sh").onclick=()=>{
+  const m=$("msg");
+  try{navigator.clipboard.writeText(txt).then(()=>m.textContent="已複製！貼給朋友吧 🎉",()=>m.textContent=txt)}catch(e){m.textContent=txt}
+ };
+}
+document.addEventListener("keydown",e=>{
+ const b=document.querySelector(`button[data-j="${+e.key-1}"]`);
+ if(b&&["1","2","3"].includes(e.key))b.click();
+});
+start();
+</script>
+</body>
+</html>
